@@ -24,4 +24,6 @@ public class Reservation implements Serializable {
 
     @ManyToMany
     Set<Etudiant> etudiants;
+    @ManyToOne
+    Chambre chambre;
 }

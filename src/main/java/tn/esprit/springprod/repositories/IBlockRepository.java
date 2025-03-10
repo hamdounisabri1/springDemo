@@ -7,4 +7,6 @@ import tn.esprit.springprod.entities.Bloc;
 
 @Repository
 public interface IBlockRepository extends CrudRepository<Bloc, Long> {
+
+
 }

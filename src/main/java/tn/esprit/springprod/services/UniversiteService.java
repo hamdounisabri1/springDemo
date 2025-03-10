@@ -33,4 +33,5 @@ public class UniversiteService implements IUniversiteService {
     public Universite retrieveUniversite(long idUniversite) {
         return universiteRepository.findById(idUniversite).orElseThrow(() -> new EntityNotFoundException("No universite found with id: " + idUniversite));
     }
+
 }
