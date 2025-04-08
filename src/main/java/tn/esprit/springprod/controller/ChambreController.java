@@ -26,6 +26,7 @@ public class ChambreController {
 
     @PostMapping("/add")
     public Chambre addChambre(@RequestBody Chambre chambre) {
+        System.out.println(chambre.getIdChambre());
         return chambreService.addChambre(chambre);
     }
 

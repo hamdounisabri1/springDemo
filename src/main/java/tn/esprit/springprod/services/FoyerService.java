@@ -3,8 +3,11 @@ package tn.esprit.springprod.services;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.springprod.entities.Bloc;
 import tn.esprit.springprod.entities.Foyer;
+import tn.esprit.springprod.entities.Universite;
 import tn.esprit.springprod.repositories.IFoyerRepository;
+import tn.esprit.springprod.repositories.IUniversiteRepository;
 
 import java.util.List;
 
@@ -13,6 +16,8 @@ public class FoyerService implements IFoyerService{
 
     @Autowired
     IFoyerRepository foyerRepository;
+    @Autowired
+    IUniversiteRepository universiteRepository;
 
     @Override
     public List<Foyer> retrieveAllFoyers() {
@@ -37,5 +42,17 @@ public class FoyerService implements IFoyerService{
     @Override
     public void removeFoyer(long idFoyer) {
                 foyerRepository.deleteById(idFoyer);
+    }
+
+    @Override
+    public Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, long idUniversite) {
+        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
+        foyer.setUniversite(universite);
+
+        for(Bloc bloc : foyer.getBlocs()) {
+            bloc.setFoyer(foyer);
+        }
+        foyerRepository.save(foyer);
+        return foyer;
     }
 }

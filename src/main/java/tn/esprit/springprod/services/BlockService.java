@@ -4,7 +4,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.springprod.entities.Bloc;
+import tn.esprit.springprod.entities.Chambre;
 import tn.esprit.springprod.repositories.IBlockRepository;
+import tn.esprit.springprod.repositories.IChambreRepository;
 
 import java.util.List;
 
@@ -13,7 +15,8 @@ public class BlockService implements IBlockService {
 
     @Autowired
     IBlockRepository blockRepository;
-
+    @Autowired
+    IChambreRepository chambreRepository;
     @Override
     public List<Bloc> retrieveBlocs() {
         return (List<Bloc>) blockRepository.findAll();
@@ -38,4 +41,17 @@ public class BlockService implements IBlockService {
     public void removeBloc(long idBloc) {
             blockRepository.deleteById(idBloc);
     }
+
+    @Override
+    public Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) {
+            Bloc bloc = retrieveBloc(idBloc);
+            for(Long num : numChambre) {
+                Chambre chambre=chambreRepository.findChambreByNumeroChambre(num);
+                chambre.setBloc(bloc);
+                chambreRepository.save(chambre);
+            }
+        return bloc;
+    }
+
+
 }

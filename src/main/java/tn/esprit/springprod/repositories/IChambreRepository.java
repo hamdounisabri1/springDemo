@@ -20,4 +20,7 @@ public interface IChambreRepository extends CrudRepository<Chambre, Long> {
     List<Chambre> findChambresByBlocAndTypeJPQL(long idBloc, TypeChambre typeC);
 
     List<Chambre> findByBlocIdBlocAndTypeC(long idBloc, TypeChambre type);
+
+    // Services avancés
+    Chambre findChambreByNumeroChambre(long numeroChambre);
 }

@@ -42,6 +42,14 @@ public class BlockController {
        return ResponseEntity.ok("Deleted block with id " + id);
   }
 
-
-
+    @PutMapping("/{idBloc}/affecter-chambres")
+    public ResponseEntity<Bloc> affecterChambres(@PathVariable long idBloc, @RequestBody List<Long> numChambres) {
+        Bloc updatedBloc = blockService.affecterChambresABloc(numChambres, idBloc);
+        return ResponseEntity.ok(updatedBloc);
+    }
 }
+
+
+
+
+

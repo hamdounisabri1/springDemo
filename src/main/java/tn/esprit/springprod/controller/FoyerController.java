@@ -40,4 +40,10 @@ public class FoyerController {
         return ResponseEntity.ok("Deleted foyer with id " + id);
     }
 
+    @PostMapping("/add/{id}")
+    public Foyer addFoyer(@PathVariable("id") Long id, @RequestBody Foyer foyer) {
+        foyerService.ajouterFoyerEtAffecterAUniversite(foyer,id);
+        return null;
+    }
+
 }

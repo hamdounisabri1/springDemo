@@ -8,4 +8,5 @@ import tn.esprit.springprod.entities.Universite;
 @Repository
 
 public interface IUniversiteRepository extends CrudRepository<Universite, Long> {
+    public Universite findByNomUniversite(String name);
 }

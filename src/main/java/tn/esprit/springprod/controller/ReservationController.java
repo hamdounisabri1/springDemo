@@ -19,6 +19,7 @@ public class ReservationController {
         return reservationService.retrieveAllReservation();
     }
 
+
     @GetMapping("/{id}")
     public Reservation getReservationById(@PathVariable("id") String idReservation) {
         return reservationService.retrieveReservation(idReservation);
@@ -27,5 +28,9 @@ public class ReservationController {
     @PutMapping("/update")
     public Reservation updateReservation(@RequestBody Reservation reservation) {
         return reservationService.updateReservation(reservation);
+    }
+    @GetMapping("test")
+    public String test(@RequestBody Reservation reservation) {
+        return reservation.getIdReservation();
     }
 }
